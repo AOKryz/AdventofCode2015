@@ -1,6 +1,7 @@
 #Advent of Coding 2015
 
 import re
+import hashlib
 
 
 #Day 1 Function
@@ -21,7 +22,7 @@ def floorchange(directions):
 def ribbon(boxes):
     presents = (re.findall(r'(\d{1,2})x(\d{1,2})x(\d{1,2})\n',boxes))
     totrib = 0
-        for x in presents:
+    for x in presents:
         i = [int(y) for y in x]
         i.sort()
         totrib += (int(i[0]*2) + int(i[1]*2)) + (int(i[1]) * int(i[0]) *int(i[2]))
@@ -39,7 +40,7 @@ def presentwrap(boxes):
         totwrap += min(sas) + 2*sas[0]+ 2*sas[2]+ 2*sas[1]
     print(totwrap)
 
-#Part 4
+#Day3
 def movehouse(location,direction):
     global sloc
     global rloc
@@ -55,25 +56,59 @@ def movehouse(location,direction):
     
     return newloc
 
-##main for part 3
-
-temp = open("\\inputs\\day3.txt")
-direcs = temp.read()
-sloc = [0,0]
-rloc =[0,0]
-santa = True
-houses = [[0,0]]
-
-for i in range(len(direcs)):
-    if santa== True:
-        newloc = movehouse(sloc,direcs[i])
+#Day 4 function
+def md5hash(password):
+    hasher = hashlib.md5()
+    tester = password.encode('utf-8')
+    hasher.update(tester)
+    if hasher.hexdigest()[0:6] == '000000':
+        return True
     else:
-        newloc = movehouse(rloc,direcs[i])
-    if newloc not in houses:
-    houses.append(newloc)
-print(len(houses))
+        return False
 
-##main for part 2
+
+##Main for Day 4
+day4input = 'bgvyzdsv'
+suffix = 1
+while True:
+    if md5hash(day4input + str(suffix)) == True:
+        print('Found a value: ' + day4input + str(suffix))
+        break
+    else:
+        suffix += 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+####main for part 3
+##
+##temp = open("\\inputs\\day3.txt")
+##direcs = temp.read()
+##sloc = [0,0]
+##rloc =[0,0]
+##santa = True
+##houses = [[0,0]]
+##
+##for i in range(len(direcs)):
+##    if santa== True:
+##        newloc = movehouse(sloc,direcs[i])
+##    else:
+##        newloc = movehouse(rloc,direcs[i])
+##    if newloc not in houses:
+##    houses.append(newloc)
+##print(len(houses))
+
+##Main for part 2
+
 #inputd = open("newfile.txt")
 #boxes = inputd.read()
 #ribbon(boxes)
