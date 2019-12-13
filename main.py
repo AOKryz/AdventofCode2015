@@ -80,15 +80,6 @@ while True:
 
 
 
-
-
-
-
-
-
-
-
-
 ####main for part 3
 ##
 ##temp = open("\\inputs\\day3.txt")
